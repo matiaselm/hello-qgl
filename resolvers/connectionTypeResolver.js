@@ -1,10 +1,15 @@
-import ConnectionType from '../models/connectionType.js';
+'use strict';
+import ConnectionType from "../models/connectionType.js";
 
 export default {
-  Connection: {
-    ConnectionType(parent) {
-      // console.log('connectionType', parent);
-      return ConnectionType.findById(parent.ConnectionType);
+    Query: {
+        ConnectionTypes: () => {
+            return ConnectionType.find();
+        }
     },
-  },
-};
+    Connection: {
+        ConnectionType: (parent) => {
+          return ConnectionType.findById(parent.ConnectionTypeID);
+        }
+    }
+}

@@ -8,7 +8,7 @@ const stationSchema = new Schema({
     AddressLine1: String,
     StateOrProvince: String,
     Location: { type: mongoose.Types.ObjectId, ref: 'Location' },
-    Connections: [{ type: mongoose.Types.ObjectId, ref: 'Connections' }],
+    Connections: [{ type: mongoose.Types.ObjectId, ref: 'Connection' }],
 });
 
 export default mongoose.model('Station', stationSchema);

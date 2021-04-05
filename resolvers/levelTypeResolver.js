@@ -1,10 +1,10 @@
-import LevelType from '../models/levelType.js';
+import Level from '../models/level.js';
 
 export default {
   Connection: {
-    LevelType(parent) {
+    Level(parent) {
       console.log('levelType', parent);
-      return LevelType.findById(parent.LevelType);
+      return Level.findById(parent.Level);
     },
   },
 };
