@@ -1,3 +1,3 @@
 # hello-qgl - chargemap
 
-[http://first-node-env.jelastic.metropolia.fi/graphql](Deployed GraphQL interface here)
+[Deployed GraphQL interface here](http://first-node-env.jelastic.metropolia.fi/graphql)
