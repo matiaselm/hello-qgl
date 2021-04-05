@@ -12,6 +12,8 @@ dotenv.config();
     const conn = await connectMongo();
     if (conn) {
       console.log('Connected successfully.');
+    } else {
+      console.error('Error connecting mongo')
     }
 
     const server = new ApolloServer({
@@ -24,9 +26,7 @@ dotenv.config();
     server.applyMiddleware({app});
 
     app.listen({port: 3000}, () =>
-        console.log(
-            `🚀 Server ready at http://localhost:3000${server.graphqlPath}`),
-    );
+        console.log(`🚀 Server ready at ${process.env.DB_URL}`),);
   } catch (e) {
     console.log('server error: ' + e.message);
   }
