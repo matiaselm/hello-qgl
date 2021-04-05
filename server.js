@@ -7,13 +7,16 @@ import connectMongo from './db/db.js';
 
 dotenv.config();
 
+let currentDate = new Date();
+let time = currentDate.getHours() + ":" + currentDate.getMinutes();
+
 (async () => {
   try {
     const conn = await connectMongo();
     if (conn) {
-      console.log('Connected successfully.');
+      console.log(`[${time}] Connected successfully.`);
     } else {
-      console.error('Error connecting mongo')
+      console.error(`[${time}]Error connecting mongo`)
     }
 
     const server = new ApolloServer({
@@ -26,7 +29,7 @@ dotenv.config();
     server.applyMiddleware({app});
 
     app.listen({port: 3000}, () =>
-        console.log(`🚀 Server ready at ${process.env.DB_URL}`),);
+        console.log(`[${time}] Server ready at ${process.env.DB_URL}`),);
   } catch (e) {
     console.log('server error: ' + e.message);
   }
