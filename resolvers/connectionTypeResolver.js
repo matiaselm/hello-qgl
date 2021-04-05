@@ -2,9 +2,9 @@ import ConnectionType from '../models/connectionType.js';
 
 export default {
   Connection: {
-    connectionType(parent) {
+    ConnectionType(parent) {
       console.log('connectionType', parent);
-      return ConnectionType.findById(parent.connectionType);
+      return ConnectionType.findById(parent.ConnectionType);
     },
   },
 };

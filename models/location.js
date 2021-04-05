@@ -2,10 +2,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const locationSchema = new Schema({
-    type: {
-        type: String,
-        enum: ['Point']
-    },
+    type: String,
     coordinates: {
         type: [Number],
     }

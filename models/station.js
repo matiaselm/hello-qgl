@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const stationSchema = new Schema({
-    _id: String,
+    id: String,
     Title: String,
     Town: String,
     AddressLine1: String,
