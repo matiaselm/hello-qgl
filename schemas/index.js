@@ -1,3 +1,4 @@
+'use strict';
 import {gql} from 'apollo-server-express';
 import stationSchema from './stationSchema.js';
 import connectionSchema from './connectionSchema.js';

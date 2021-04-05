@@ -1,3 +1,4 @@
+'use strict';
 import stationResolver from './stationResolver.js';
 import connectionResolver from './connectionResolver.js';
 import connectionTypeResolver from './connectionTypeResolver.js';

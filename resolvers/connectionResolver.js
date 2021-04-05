@@ -1,3 +1,4 @@
+'use strict';
 import Connection from '../models/connection.js';
 
 export default {

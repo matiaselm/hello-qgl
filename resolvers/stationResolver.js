@@ -1,3 +1,4 @@
+'use strict';
 import Station from '../models/station.js';
 
 export default {
