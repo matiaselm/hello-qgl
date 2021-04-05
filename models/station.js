@@ -8,6 +8,7 @@ const stationSchema = new Schema({
     Town: String,
     AddressLine1: String,
     StateOrProvince: String,
+    Postcode: String,
     Location: {
         type: {
             type: String,

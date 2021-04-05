@@ -13,6 +13,7 @@ export default gql`
         Town: String,
         AddressLine1: String,
         StateOrProvince: String,
+        Postcode: String,
         Location: Location,
         Connections: [Connection]
    }
