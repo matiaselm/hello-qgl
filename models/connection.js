@@ -3,17 +3,8 @@ const Schema = mongoose.Schema;
 
 const connectionSchema = new Schema({
     Quantity: Number,
-    ConnectionType: {
-        id: String,
-        FormalName: String,
-        Title: String
-    },
-    LevelType: {
-        id: String,
-        Title: String,
-        Comments: String,
-        IsFastChargeCapable: Boolean
-    }
+    ConnectionType: {type: mongoose.Types.ObjectId, ref: 'ConnectionType',},
+    LevelType: {type: mongoose.Types.ObjectId, ref: 'LevelType',}
 });
 
 export default mongoose.model('Connection', connectionSchema);

@@ -1,8 +1,7 @@
-import animalResolver from './animalResolver.js';
-import speciesResolver from './speciesResolver.js';
-import categoryResolver from './categoryResolver.js';
 import stationResolver from './stationResolver.js';
 import connectionResolver from './connectionResolver.js';
 import locationResolver from './locationResolver.js';
+import connectionTypeResolver from './connectionTypeResolver.js';
+import levelTypeResolver from './levelTypeResolver.js';
 
-export default [animalResolver, speciesResolver, categoryResolver, stationResolver, connectionResolver, locationResolver];
+export default [stationResolver, connectionResolver, locationResolver, connectionTypeResolver, levelTypeResolver];

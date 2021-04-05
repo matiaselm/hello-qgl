@@ -7,7 +7,7 @@ export default gql`
    }
    
    type Station {
-        _id: String,
+        id: ID,
         Title: String,
         Town: String,
         AddressLine1: String,
