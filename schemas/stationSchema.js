@@ -7,29 +7,12 @@ export default gql`
    }
    
    type Station {
-        id: String,
+        _id: String,
         Title: String,
         Town: String,
-        AddressLine: String,
+        AddressLine1: String,
         StateOrProvince: String,
+        Location: Location,
+        Connections: [Connection]
    }
 `;
-
-/*        Location:{
-            type: String,
-            coordinates: [Number, Number],
-        },
-        Connections: [{
-            Quantity: Number,
-            ConnectionType: {
-                id: String,
-                FormalName: String,
-                Title: String,
-            },
-            LevelType: {
-                id: String,
-                Title: String,
-                Comments: String,
-                IsFastChargeCapable: Boolean,
-            },
-        }] */
