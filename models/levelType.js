@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const levelTypeSchema = new Schema({
         id: String,
-        Title: String,
-        Comments: String,
-        IsFastChargeCapable: Boolean
+        title: String,
+        comments: String,
+        isFastChargeCapable: Boolean
     });
 
 export default mongoose.model('LevelType', levelTypeSchema);

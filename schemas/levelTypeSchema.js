@@ -3,8 +3,8 @@ import { gql } from 'apollo-server-express';
 export default gql`
    type LevelType {
         id: ID,
-        Title: String,
-        Comments: String,
-        IsFastChargeCapable: Boolean,
+        title: String,
+        comments: String,
+        isFastChargeCapable: Boolean,
     }
 `;

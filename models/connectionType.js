@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const connectionTypeSchema = new Schema({
     id: String,
-    FormalName: String,
-    Title: String
+    formalName: String,
+    title: String
 });
 
 export default mongoose.model('ConnectionType', connectionTypeSchema);
