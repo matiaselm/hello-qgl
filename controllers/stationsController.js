@@ -1,6 +1,5 @@
 'use strict';
 import station from '../models/Stations.js';
-import Connections from '../models/Connections.js';
 import Level from '../models/Levels.js';
 import ConnectionType from '../models/ConnectionTypes.js';
 import CurrentType from '../models/CurrentTypes.js';
