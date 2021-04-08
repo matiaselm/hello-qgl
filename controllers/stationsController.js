@@ -1,17 +1,46 @@
 'use strict';
 import station from '../models/Stations.js';
+import Connections from '../models/Connections.js';
+import Level from '../models/Levels.js';
+import ConnectionType from '../models/ConnectionTypes.js';
+import CurrentType from '../models/CurrentTypes.js';
 
 const station_list_get = async (req, res) => {
-    if (req.query.limit) {
+
+    const populateRes = async (limit) => {
         let limitedStations = []
-        await station.find().then(response => {
-            for (let i = 0; i < req.query.limit; i++) {
-                limitedStations[i] = response[i]
-            }
-            console.log('Limited resp to: ' + limitedStations.length)
-            res.send(limitedStations)
-        }).catch(e => console.error(e));
-    } else { res.send(await station.find()); }
+
+        return station.find()
+            .populate({
+                path: 'Connections',
+                populate: { path: 'ConnectionTypeID', model: ConnectionType }
+            })
+            .populate({
+                path: 'Connections',
+                populate: { path: 'LevelID', model: Level },
+            })
+            .populate({
+                path: 'Connections',
+                populate: { path: 'CurrentTypeID', model: CurrentType }
+            }).exec((err, response) => {
+                if (err) {
+                    res.send("Can't get stations")
+                    return console.error(err)
+                } else {
+                    for (let i = 0; i < limit; i++) {
+                        limitedStations[i] = response[i]
+                    }
+                    console.log('Limited resp to: ' + limitedStations.length)
+                    res.send(limitedStations)
+                }
+            })
+    }
+
+    if (req.query.limit) {
+        await populateRes(req.query.limit)
+    } else {
+        await populateRes(10)
+    }
 };
 
 const station_get = async (req, res) => {

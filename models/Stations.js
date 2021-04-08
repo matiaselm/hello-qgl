@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const stationsSchema = new Schema ({
+const stationsSchema = new Schema({
     Title: String,
     AddressLine1: String,
     Town: String,
@@ -16,7 +16,12 @@ const stationsSchema = new Schema ({
             type: [Number],
         }
     },
-    Connections:[{type: mongoose.Schema.Types.ObjectID, ref: 'Connections'}]
+    Connections: [
+        {
+            type: Schema.Types.ObjectID,
+            ref: 'Connections'
+        }
+    ]
 });
 
 export default mongoose.model('Stations', stationsSchema);

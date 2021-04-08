@@ -5,6 +5,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectMongo from './db/db.js';
 import cors from 'cors';
+import connectionsRoute from './routes/connectionsRoute.js';
 import stationsRoute from './routes/stationsRoute.js';
 
 dotenv.config();

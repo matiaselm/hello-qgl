@@ -2,11 +2,20 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const connectionsSchema = new Schema ({
+const connectionsSchema = new Schema({
     Quantity: Number,
-    ConnectionTypeID: {type: mongoose.Schema.Types.ObjectID, ref: 'ConnectionType'},
-    LevelID: {type: mongoose.Schema.Types.ObjectID, ref: 'Level'},
-    CurrentTypeID: {type: mongoose.Schema.Types.ObjectID, ref: 'CurrentType'}
+    ConnectionTypeID: {
+        type: Schema.Types.ObjectID,
+        ref: 'ConnectionTypeID'
+    },
+    LevelID: {
+        type: Schema.Types.ObjectID,
+        ref: 'LevelID'
+    },
+    CurrentTypeID: {
+        type: Schema.Types.ObjectID,
+        ref: 'CurrentTypeID'
+    }
 });
 
 export default mongoose.model('Connections', connectionsSchema);
