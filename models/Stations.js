@@ -1,12 +1,10 @@
-'use strict';
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const stationSchema = new Schema({
-    _id: String,
+const stationsSchema = new Schema ({
     Title: String,
-    Town: String,
     AddressLine1: String,
+    Town: String,
     StateOrProvince: String,
     Postcode: String,
     Location: {
@@ -18,7 +16,7 @@ const stationSchema = new Schema({
             type: [Number],
         }
     },
-    Connections: [{ type: mongoose.Types.ObjectId, ref: 'Connection' }],
+    Connections:[{type: mongoose.Schema.Types.ObjectID, ref: 'Connections'}]
 });
 
-export default mongoose.model('Station', stationSchema);
+export default mongoose.model('Stations', stationsSchema);

@@ -3,12 +3,12 @@ import {gql} from 'apollo-server-express';
 
 export default gql`
     extend type Query {
-        CurrentTypes: [CurrentType]
+        leveltypes: [Level]
     }
-    
-    type CurrentType {
+    type Level {
         id: ID
-        Description: String
-        Title: String    
+        Comments: String
+        IsFastChargeCapable: Boolean
+        Title: String
     }
 `;

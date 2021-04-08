@@ -4,6 +4,8 @@ import resolvers from './resolvers/index.js';
 import express from 'express';
 import dotenv from 'dotenv';
 import connectMongo from './db/db.js';
+import cors from 'cors';
+import stationsRoute from './routes/stationsRoute.js';
 
 dotenv.config();
 
@@ -12,11 +14,11 @@ let time = currentDate.getHours() + ":" + currentDate.getMinutes();
 
 (async () => {
   try {
+
     const conn = await connectMongo();
+
     if (conn) {
       console.log(`[${time}] Connected successfully.`);
-    } else {
-      console.error(`[${time}]Error connecting mongo`)
     }
 
     const server = new ApolloServer({
@@ -28,8 +30,14 @@ let time = currentDate.getHours() + ":" + currentDate.getMinutes();
 
     server.applyMiddleware({app});
 
+    app.use(express.urlencoded({extended: false}));
+    app.use(express.json());
+    app.use(cors());
+
+    app.use('/stations', stationsRoute);
+
     app.listen({port: 3000}, () =>
-        console.log(`[${time}] Server ready at ${process.env.DB_URL}`),);
+        console.log(`[${time}] Server ready at localhost:3000`),);
   } catch (e) {
     console.log('server error: ' + e.message);
   }
