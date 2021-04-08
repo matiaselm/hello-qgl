@@ -2,7 +2,16 @@
 import station from '../models/Stations.js';
 
 const station_list_get = async (req, res) => {
-    res.send(await station.find());
+    if (req.query.limit) {
+        let limitedStations = []
+        await station.find().then(response => {
+            for (let i = 0; i < req.query.limit; i++) {
+                limitedStations[i] = response[i]
+            }
+            console.log('Limited resp to: ' + limitedStations.length)
+            res.send(limitedStations)
+        }).catch(e => console.error(e));
+    } else { res.send(await station.find()); }
 };
 
 const station_get = async (req, res) => {
