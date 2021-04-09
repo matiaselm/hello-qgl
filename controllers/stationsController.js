@@ -3,42 +3,59 @@ import station from '../models/Stations.js';
 import Level from '../models/Levels.js';
 import ConnectionType from '../models/ConnectionTypes.js';
 import CurrentType from '../models/CurrentTypes.js';
+import rectangleBounds from '../utils/rectangleBounds.js';
 
 const station_list_get = async (req, res) => {
 
-    const populateRes = async (limit) => {
-        let limitedStations = []
+    try {
+        const bottomLeft = req.query.bottomLeft;
+        const topRight = req.query.topRight;
+        const limit = req.query.limit;
 
-        return station.find()
-            .populate({
-                path: 'Connections',
-                populate: { path: 'ConnectionTypeID', model: ConnectionType }
-            })
-            .populate({
-                path: 'Connections',
-                populate: { path: 'LevelID', model: Level },
-            })
-            .populate({
-                path: 'Connections',
-                populate: { path: 'CurrentTypeID', model: CurrentType }
-            }).exec((err, response) => {
-                if (err) {
-                    res.send("Can't get stations")
-                    return console.error(err)
-                } else {
-                    for (let i = 0; i < limit; i++) {
-                        limitedStations[i] = response[i]
-                    }
-                    console.log('Limited resp to: ' + limitedStations.length)
-                    res.send(limitedStations)
-                }
-            })
-    }
-
-    if (req.query.limit) {
-        await populateRes(req.query.limit)
-    } else {
-        await populateRes(10)
+        if (topRight && bottomLeft) {
+            const area = rectangleBounds(JSON.parse(topRight), JSON.parse(bottomLeft));
+            await station.find()
+                .where('Location')
+                .within(area)
+                .limit(limit ? Number(limit) : 10)
+                .populate({
+                    path: 'Connections',
+                    populate: { path: 'ConnectionTypeID', model: ConnectionType }
+                })
+                .populate({
+                    path: 'Connections',
+                    populate: { path: 'LevelID', model: Level },
+                })
+                .populate({
+                    path: 'Connections',
+                    populate: { path: 'CurrentTypeID', model: CurrentType }
+                }).exec((err, response) => {
+                    console.log('Limited resp to: ' + response.length)
+                    res.send(response)
+                })
+        } else {
+            await station.find()
+                .where('Location')
+                .limit(limit ? Number(limit) : 10)
+                .populate({
+                    path: 'Connections',
+                    populate: { path: 'ConnectionTypeID', model: ConnectionType }
+                })
+                .populate({
+                    path: 'Connections',
+                    populate: { path: 'LevelID', model: Level },
+                })
+                .populate({
+                    path: 'Connections',
+                    populate: { path: 'CurrentTypeID', model: CurrentType }
+                }).exec((err, response) => {
+                    if (err) res.send(err)
+                    console.log('Limited resp to: ' + response.length)
+                    res.json(response)
+                })
+        }
+    } catch (e) {
+        res.send(e.message, 400)
     }
 };
 
