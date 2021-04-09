@@ -14,10 +14,10 @@ const station_list_get = async (req, res) => {
 
         if (topRight && bottomLeft) {
             const area = rectangleBounds(JSON.parse(topRight), JSON.parse(bottomLeft));
-            await station.find()
+            station.find()
                 .where('Location')
                 .within(area)
-                .limit(limit ? Number(limit) : 10)
+                .limit(Number(limit) ?? 10)
                 .populate({
                     path: 'Connections',
                     populate: { path: 'ConnectionTypeID', model: ConnectionType }
@@ -30,13 +30,13 @@ const station_list_get = async (req, res) => {
                     path: 'Connections',
                     populate: { path: 'CurrentTypeID', model: CurrentType }
                 }).exec((err, response) => {
-                    console.log('Limited resp to: ' + response.length)
+                    console.log('Response length:', response.length)
                     res.send(response)
                 })
         } else {
-            await station.find()
+            station.find()
                 .where('Location')
-                .limit(limit ? Number(limit) : 10)
+                .limit(Number(limit) ?? 10)
                 .populate({
                     path: 'Connections',
                     populate: { path: 'ConnectionTypeID', model: ConnectionType }
@@ -55,7 +55,7 @@ const station_list_get = async (req, res) => {
                 })
         }
     } catch (e) {
-        res.send(e.message, 400)
+        res.send(e.message)
     }
 };
 
