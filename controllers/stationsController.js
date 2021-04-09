@@ -71,42 +71,42 @@ const station_get = async (req, res) => {
 const station_post = async (req, res) => {
     try {
         const connections = req.body.Connections;
-    
+
         const connIds = await Promise.all(connections.map(async connectionFromReq => {
-          const newConnection = new Connection(connectionFromReq);
-          await newConnection.save();
-          return newConnection._id;
+            const newConnection = new Connection(connectionFromReq);
+            await newConnection.save();
+            return newConnection._id;
         }));
-    
+
         const newStation = new station({
-          ...req.body.Station,
-          Connections: connIds
+            ...req.body.Station,
+            Connections: connIds
         });
-    
+
         await newStation.save();
-    
+
         const populated = await newStation.populate({
-          path: 'Connections',
-          populate: [
-            {
-                path: 'ConnectionTypeID',
-                model: ConnectionType
-            },
-            {
-                path: 'LevelID',
-                model: Level
-            },
-            {
-                path: 'CurrentTypeID',
-                model: CurrentType
-            }
-          ]
+            path: 'Connections',
+            populate: [
+                {
+                    path: 'ConnectionTypeID',
+                    model: ConnectionType
+                },
+                {
+                    path: 'LevelID',
+                    model: Level
+                },
+                {
+                    path: 'CurrentTypeID',
+                    model: CurrentType
+                }
+            ]
         }).execPopulate();
-    
+
         res.json(populated);
-      } catch (error) {
+    } catch (error) {
         res.status(500).json({ error: error.message, data: req.body });
-      }
+    }
 }
 
 const station_put = async (req, res) => {
@@ -115,8 +115,19 @@ const station_put = async (req, res) => {
 };
 
 const station_delete = async (req, res) => {
-    const del = await station.deleteOne({ _id: req.params.id });
-    res.send(`deleted ${del.deletedCount} station post`);
+    try {
+        const id = req.params.id;
+        console.log('Station id', id);
+        await station.findByIdAndDelete(id, (err, station) => {
+            if (err) {
+                res.status(400).json({ error: err.message });
+            } else {
+                res.status(200).json({ message: `Station with id ${id} deleted` })
+            }
+        });
+    } catch (e) {
+        res.status(400).json({ error: e.message })
+    }
 };
 
 export default {
