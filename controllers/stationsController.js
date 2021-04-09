@@ -2,6 +2,7 @@
 import station from '../models/Stations.js';
 import Level from '../models/Levels.js';
 import ConnectionType from '../models/ConnectionTypes.js';
+import Connection from '../models/Connections.js';
 import CurrentType from '../models/CurrentTypes.js';
 import rectangleBounds from '../utils/rectangleBounds.js';
 
@@ -55,7 +56,7 @@ const station_list_get = async (req, res) => {
                 })
         }
     } catch (e) {
-        res.send(e.message)
+        res.status(400).json({ error: e.message })
     }
 };
 
@@ -68,14 +69,44 @@ const station_get = async (req, res) => {
 };
 
 const station_post = async (req, res) => {
-    const post = await station.create({
-        Title: req.body.Title,
-        AddressLine1: req.body.AddressLine1,
-        Town: req.body.Town,
-        StateOrProvince: req.body.StateOrProvince,
-        PostCode: req.body.PostCode,
-    });
-    res.send(`station post ${post.Title} created with id: ${post._id}`);
+    try {
+        const connections = req.body.Connections;
+    
+        const connIds = await Promise.all(connections.map(async connectionFromReq => {
+          const newConnection = new Connection(connectionFromReq);
+          await newConnection.save();
+          return newConnection._id;
+        }));
+    
+        const newStation = new station({
+          ...req.body.Station,
+          Connections: connIds
+        });
+    
+        await newStation.save();
+    
+        const populated = await newStation.populate({
+          path: 'Connections',
+          populate: [
+            {
+                path: 'ConnectionTypeID',
+                model: ConnectionType
+            },
+            {
+                path: 'LevelID',
+                model: Level
+            },
+            {
+                path: 'CurrentTypeID',
+                model: CurrentType
+            }
+          ]
+        }).execPopulate();
+    
+        res.json(populated);
+      } catch (error) {
+        res.status(500).json({ error: error.message, data: req.body });
+      }
 }
 
 const station_put = async (req, res) => {
