@@ -117,6 +117,7 @@ const station_put = async (req, res) => {
 const station_delete = async (req, res) => {
     try {
         const id = req.params.id;
+
         console.log('Station id', id);
         await station.findByIdAndDelete(id, (err, station) => {
             if (err) {
