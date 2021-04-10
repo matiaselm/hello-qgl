@@ -1,4 +1,4 @@
-# hello-qgl - chargemap
+# sssf-node-exercise - chargemap with graphql
 
 ~~[Deployed GraphQL interface here](http://first-node-env.jelastic.metropolia.fi/graphql)~~
 
