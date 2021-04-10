@@ -33,4 +33,4 @@ with body:
 ```
 
 ### DELETE station
-Delete request to http://first-node-env.jelastic.metropolia.fi/station/{ID}
+Delete request to http://first-node-env.jelastic.metropolia.fi/station/ID
