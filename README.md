@@ -1,4 +1,4 @@
-S# Example requests
+## Example requests
 
 ### GET all stations
 [http://first-node-env.jelastic.metropolia.fi/station](http://first-node-env.jelastic.metropolia.fi/station)
