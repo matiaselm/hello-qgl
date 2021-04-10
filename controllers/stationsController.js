@@ -31,6 +31,7 @@ const station_list_get = async (req, res) => {
                     path: 'Connections',
                     populate: { path: 'CurrentTypeID', model: CurrentType }
                 }).exec((err, response) => {
+                    if (err) res.status(500).send({ error: err.message })
                     console.log('Response length:', response.length)
                     res.send(response)
                 })
@@ -50,8 +51,8 @@ const station_list_get = async (req, res) => {
                     path: 'Connections',
                     populate: { path: 'CurrentTypeID', model: CurrentType }
                 }).exec((err, response) => {
-                    if (err) res.send(err)
-                    console.log('Limited resp to: ' + response.length)
+                    if (err) res.status(500).send({ error: err.message })
+                    console.log('Response length: ', response.length)
                     res.json(response)
                 })
         }
@@ -64,7 +65,7 @@ const station_get = async (req, res) => {
     try {
         res.send(await station.findById(req.params.id));
     } catch (e) {
-        res.send('Cant find station with id ' + req.params.id)
+        res.status(400).send('Cant find station with id ', req.params.id)
     }
 };
 

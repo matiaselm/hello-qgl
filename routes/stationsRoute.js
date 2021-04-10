@@ -7,9 +7,6 @@ router.route('/')
     .post(stationsController.station_post)
     .get(stationsController.station_list_get);
 
-router.route('/limit/:limit')
-    .get(stationsController.station_list_get);
-
 router.route('/:id')
     .get(stationsController.station_get)
     .patch(stationsController.station_put)
