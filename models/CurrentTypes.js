@@ -1,11 +1,10 @@
 'use strict';
 import mongoose from 'mongoose';
-
 const Schema = mongoose.Schema;
 
-const currentTypeSchema = new Schema ({
+const currentTypesSchema = new Schema ({
     Description: String,
     Title: String
 });
 
-export default mongoose.model('CurrentType', currentTypeSchema);
+export default mongoose.model('CurrentType', currentTypesSchema);

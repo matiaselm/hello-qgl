@@ -1,14 +1,14 @@
 'use strict';
-import { gql } from 'apollo-server-express';
+import {gql} from 'apollo-server-express';
 
 export default gql`
     extend type Query {
-        ConnectionTypes: [ConnectionType]
+        connectiontypes: [ConnectionTypes]
     }
-
-    type ConnectionType {
+    
+    type ConnectionTypes {
          id: ID
          FormalName: String
          Title: String
     }
-`;
+`

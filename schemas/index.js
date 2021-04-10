@@ -1,11 +1,10 @@
 'use strict';
+import connectionsSchema from './connectionsSchema.js'
+import connectionTypesSchema from './connectionTypesSchema.js'
+import currentTypesSchema from './currentTypesSchema.js'
+import levelsSchema from './levelsSchema.js'
+import stationsSchema from './stationsSchema.js'
 import {gql} from 'apollo-server-express';
-import stationSchema from './stationSchema.js';
-import connectionSchema from './connectionSchema.js';
-import locationSchema from './locationSchema.js';
-import connectionTypeSchema from './connectionTypeSchema.js';
-import levelSchema from './levelSchema.js';
-import currentTypeSchema from './currentTypeSchema.js';
 
 const linkSchema = gql`
    type Query {
@@ -17,11 +16,10 @@ const linkSchema = gql`
 `;
 
 export default [
-   linkSchema,
-   stationSchema,
-   connectionSchema,
-   locationSchema,
-   connectionTypeSchema,
-   levelSchema,
-   currentTypeSchema
+    linkSchema,
+    connectionTypesSchema,
+    connectionsSchema,
+    currentTypesSchema,
+    levelsSchema,
+    stationsSchema,
 ];

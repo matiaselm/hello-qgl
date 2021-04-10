@@ -1,8 +1,8 @@
 'use strict';
-import stationResolver from './stationResolver.js';
-import connectionResolver from './connectionResolver.js';
-import connectionTypeResolver from './connectionTypeResolver.js';
-import levelResolver from './levelResolver.js';
-import currentTypeResolver from './currentTypeResolver.js';
+import connectionsResolver from './connectionsResolver.js';
+import connectionTypesResolver from './connectionsResolver.js';
+import stationsResolver from './stationsResolver.js';
+import levelsResolver from './levelsResolver.js';
+import currentTypesResolver from './currentTypesResolver.js';
 
-export default [stationResolver, connectionResolver, connectionTypeResolver, levelResolver, currentTypeResolver];
+export default [stationsResolver, connectionsResolver, connectionTypesResolver, levelsResolver, currentTypesResolver];
