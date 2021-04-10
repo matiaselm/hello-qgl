@@ -1,4 +1,4 @@
-## Example requests
+## Example requests - REST chargemap
 
 ### GET all stations
 [http://first-node-env.jelastic.metropolia.fi/station](http://first-node-env.jelastic.metropolia.fi/station)
