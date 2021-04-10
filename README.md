@@ -1,12 +1,12 @@
 # Example requests:
 
-## GET all stations:  
+### GET all stations:  
  - [http://first-node-env.jelastic.metropolia.fi/station](http://first-node-env.jelastic.metropolia.fi/station)
 
-## GET station by id:
+### GET station by id:
  - [http://first-node-env.jelastic.metropolia.fi/station/{ID}](http://first-node-env.jelastic.metropolia.fi/station/5e590b0a7536c009841db2e1)
 
-## POST station:
+### POST station:
  - POST request to [http://first-node-env.jelastic.metropolia.fi/station](http://first-node-env.jelastic.metropolia.fi/station)
 with body:
 ```json
@@ -32,5 +32,5 @@ with body:
 }
 ```
 
-## DELETE station: 
+### DELETE station: 
  - Delete request to http://first-node-env.jelastic.metropolia.fi/station/{ID}
