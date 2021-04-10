@@ -35,7 +35,7 @@ let time = currentDate.getHours() + ":" + currentDate.getMinutes();
     app.use(express.json());
     app.use(cors());
 
-    app.use('/stations', stationsRoute);
+    app.use('/station', stationsRoute);
 
     app.listen({port: 3000}, () =>
         console.log(`[${time}] Server ready at localhost:3000`),);

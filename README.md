@@ -1,37 +1,5 @@
 ## Example requests - REST chargemap
 
-<<<<<<< HEAD
-[Deployed GraphQL interface here](http://first-node-env.jelastic.metropolia.fi/graphql)
-
-Example query:
-```
-query {
-  stations{
-    Title
-    Connections{
-      Quantity
-      Level{
-        Title
-        Comments
-        IsFastChargeCapable
-      }
-      CurrentTypeID{
-        id
-      	Description
-        Title
-      }
-    	ConnectionType{
-        FormalName
-        Title
-      }
-    }
-  }
-}
-
-```
-
-Modifications not working. Returns only all stations
-=======
 ### GET all stations
 [http://first-node-env.jelastic.metropolia.fi/station](http://first-node-env.jelastic.metropolia.fi/station)
 
@@ -66,4 +34,3 @@ with body:
 
 ### DELETE station
 Delete request to http://first-node-env.jelastic.metropolia.fi/station/ID
->>>>>>> 75de9568859585ce5fcdfb2f3b8d67302054a642
