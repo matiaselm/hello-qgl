@@ -1,6 +1,4 @@
 import { ApolloServer } from 'apollo-server-express';
-import schemas from './schemas/index.js';
-import resolvers from './resolvers/index.js';
 import express from 'express';
 import dotenv from 'dotenv';
 import connectMongo from './db/db.js';
@@ -22,15 +20,8 @@ let time = currentDate.getHours() + ":" + currentDate.getMinutes();
       console.log(`[${time}] Connected successfully.`);
     }
 
-    const server = new ApolloServer({
-      typeDefs: schemas,
-      resolvers,
-    });
-
     const app = express();
-
-    server.applyMiddleware({app});
-
+    
     app.use(express.urlencoded({extended: false}));
     app.use(express.json());
     app.use(cors());
